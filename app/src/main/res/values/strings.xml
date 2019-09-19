@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HW03</string>
+    <string name="tv_selectComplexity">Select Complexity</string>
+    <string name="tv_numberOfTimes" />
+    <string name="tv_minimum_lbl">Minimum:</string>
+    <string name="tv_maximum_lbl">Maximum:</string>
+    <string name="tv_average_lbl">Average</string>
+    <string name="btn_generate">Generate Number Thread</string>
+    <string name="tv_min_result" />
+    <string name="tv_max_result" />
+    <string name="tv_average_result" />
+</resources>

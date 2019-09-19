@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_selectComplexity"
+        android:layout_width="261dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_selectComplexity"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_numberOfTimes"
+        android:layout_width="113dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tv_numberOfTimes"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_minimum_lbl"
+        android:layout_width="165dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/tv_minimum_lbl"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+    <TextView
+        android:id="@+id/tv_maximum_lbl"
+        android:layout_width="173dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/tv_maximum_lbl"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_minimum_lbl" />
+
+    <TextView
+        android:id="@+id/tv_average"
+        android:layout_width="171dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="45dp"
+        android:text="@string/tv_average_lbl"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_maximum_lbl" />
+
+    <Button
+        android:id="@+id/btn_generate"
+        android:layout_width="249dp"
+        android:layout_height="64dp"
+        android:text="@string/btn_generate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_average" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="401dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_selectComplexity"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <TextView
+        android:id="@+id/tv_min_result"
+        android:layout_width="147dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/tv_min_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_minimum_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+    <TextView
+        android:id="@+id/tv_max_result"
+        android:layout_width="137dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="69dp"
+        android:text="@string/tv_max_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_maximum_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/tv_min_result" />
+
+    <TextView
+        android:id="@+id/tv_average_result"
+        android:layout_width="143dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="46dp"
+        android:text="@string/tv_average_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_average"
+        app:layout_constraintTop_toBottomOf="@+id/tv_max_result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
