@@ -22,10 +22,12 @@
         android:id="@+id/tv_numberOfTimes"
         android:layout_width="113dp"
         android:layout_height="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="16dp"
         android:text="@string/tv_numberOfTimes"
+        android:textColor="#020101"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,8 +69,8 @@
 
     <Button
         android:id="@+id/btn_generate"
-        android:layout_width="249dp"
-        android:layout_height="64dp"
+        android:layout_width="370dp"
+        android:layout_height="62dp"
         android:text="@string/btn_generate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,32 +87,52 @@
 
     <TextView
         android:id="@+id/tv_min_result"
-        android:layout_width="147dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="199dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="64dp"
         android:text="@string/tv_min_result"
+        android:textColor="#160909"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toEndOf="@+id/tv_minimum_lbl"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
         android:id="@+id/tv_max_result"
-        android:layout_width="137dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="69dp"
+        android:layout_width="199dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="40dp"
         android:text="@string/tv_max_result"
+        android:textColor="#130A0A"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toEndOf="@+id/tv_maximum_lbl"
         app:layout_constraintTop_toBottomOf="@+id/tv_min_result" />
 
     <TextView
         android:id="@+id/tv_average_result"
-        android:layout_width="143dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="46dp"
+        android:layout_width="203dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="56dp"
         android:text="@string/tv_average_result"
+        android:textColor="#0E0808"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toEndOf="@+id/tv_average"
         app:layout_constraintTop_toBottomOf="@+id/tv_max_result" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="278dp"
+        android:layout_height="172dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.407" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

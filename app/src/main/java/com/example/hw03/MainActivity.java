@@ -3,12 +3,14 @@ package com.example.hw03;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView tv_min_result;
     public TextView tv_max_result;
     public TextView tv_average_result;
+    public ProgressBar progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         tv_min_result = findViewById(R.id.tv_min_result);
         tv_max_result = findViewById(R.id.tv_max_result);
         tv_average_result = findViewById(R.id.tv_average_result);
+        progressDialog = findViewById(R.id.progressBar);
+        progressDialog.setMax(100);
+        progressDialog.setVisibility(View.INVISIBLE);
 
         handler = new Handler(new Handler.Callback() {
             @Override
@@ -48,17 +54,19 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (message.what){
                     case DoWork.STATUS_START:
-                        Log.d("TEST", "Message Received... " + message.obj);
-
+                        Log.d("TEST", "Message Received... ");
+                        progressDialog.setProgress(0);
                         break;
                     case DoWork.STATUS_PROGRESS:
+                        progressDialog.setVisibility(View.VISIBLE);
+                        progressDialog.setProgress(message.getData().getInt(DoWork.PROGRESS_KEY));
+                            break;
+                    case DoWork.STATUS_STOP:
+                        Log.d("TEST", "Message Stopped...");
+                        progressDialog.setVisibility(View.GONE);
                         tv_average_result.setText( Double.toString(message.getData().getDouble(DoWork.AVERAGE_KEY)));
                         tv_max_result.setText( Double.toString(message.getData().getDouble(DoWork.MAX_KEY)));
                         tv_min_result.setText( Double.toString(message.getData().getDouble(DoWork.MIN_KEY)));
-                        Log.d("TEST", "Message In Progress..." + message.getData().getDoubleArray(DoWork.DOUBLES_KEY));
-                            break;
-                    case DoWork.STATUS_STOP:
-                        Log.d("TEST", "Message Stopped..." + message.obj);
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + message.what);
@@ -103,14 +111,34 @@ public class MainActivity extends AppCompatActivity {
         static final String MIN_KEY = "min";
         static final String AVERAGE_KEY = "average";
         static final String DOUBLES_KEY = "doubles";
+        static final String PROGRESS_KEY = "progress";
         @Override
         public void run() {
+            Log.d("TEST", "Number Of Times: " + selectedNumberOfTimes);
          ArrayList<Double> doubles =   HeavyWork.getArrayNumbers(selectedNumberOfTimes);
          double[] doubleArray = doubles.stream().mapToDouble(Double::doubleValue).toArray();
+
+            Message startMessage = new Message();
+            startMessage.what = STATUS_START;
+            handler.sendMessage(startMessage);
+
 
            Double average = 0.0;
            Double max = 0.0;
            Double min = 0.0;
+
+           for(int i=0; i <100; i++){
+               //doing this so the spinner can show.
+               for (int j=0; j<1000000; j++){
+
+               }
+               Message progressMessage = new Message();
+               progressMessage.what = STATUS_PROGRESS;
+               Bundle bundle = new Bundle();
+               bundle.putInt(PROGRESS_KEY, (Integer)i);
+               progressMessage.setData(bundle);
+               handler.sendMessage(progressMessage);
+           }
 
             for (Double number : doubles) {
                 average += number;
@@ -121,26 +149,14 @@ public class MainActivity extends AppCompatActivity {
             max = Collections.max(doubles);
             min = Collections.min(doubles);
 
-         Message startMessage = new Message();
-         startMessage.what = STATUS_START;
-         handler.sendMessage(startMessage);
-
-         Message progressMessage = new Message();
-         progressMessage.what = STATUS_PROGRESS;
-         Bundle bundle = new Bundle();
-
-         bundle.putDoubleArray(DOUBLES_KEY, doubleArray);
-         bundle.putDouble(MAX_KEY, max);
-         bundle.putDouble(MIN_KEY, min);
-         bundle.putDouble(AVERAGE_KEY, average);
-         progressMessage.setData(bundle);
-         handler.sendMessage(progressMessage);
-
          Message stopMessage = new Message();
-         stopMessage.what = STATUS_STOP;
+            stopMessage.what = STATUS_STOP;
+         Bundle stopBundle = new Bundle();
+            stopBundle.putDouble(MAX_KEY, max);
+            stopBundle.putDouble(MIN_KEY, min);
+            stopBundle.putDouble(AVERAGE_KEY, average);
+         stopMessage.setData(stopBundle);
          handler.sendMessage(stopMessage);
-
-
         }
     }
 }
