@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     case DoWork.STATUS_PROGRESS:
                         progressDialog.setVisibility(View.VISIBLE);
                         progressDialog.setProgress(message.getData().getInt(DoWork.PROGRESS_KEY));
+                        Log.d("TEST", Integer.toString(message.getData().getInt(DoWork.PROGRESS_KEY)));
                             break;
                     case DoWork.STATUS_STOP:
                         Log.d("TEST", "Message Stopped...");
@@ -77,7 +79,13 @@ public class MainActivity extends AppCompatActivity {
         btn_generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                threadPool.execute(new DoWork());
+
+                if (selectedNumberOfTimes == null || selectedNumberOfTimes <= 0 ){
+                    Toast.makeText(MainActivity.this, "Please select a complexity number greater than 0.", Toast.LENGTH_SHORT).show();
+                }else{
+                    threadPool.execute(new DoWork());
+                }
+
             }
         });
 
@@ -129,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
            for(int i=0; i <100; i++){
                //doing this so the spinner can show.
-               for (int j=0; j<1000000; j++){
+               for (int j=0; j<10000000; j++){
 
                }
                Message progressMessage = new Message();
